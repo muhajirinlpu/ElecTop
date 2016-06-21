@@ -7,23 +7,23 @@ $do = new Hmpg();
 switch ($_GET['do']) {
 
 	case 'getNewProduct':
-		# code...
+		$do->seeNewProduct();
 		break;
 
 	case 'getTopProduct':
-		# code...
+		$do->seeTopProduct();
 		break;
 
 	case 'getLastviewProduct':
-		# code...
+		$do->seeLastviewProduct();
 		break;
 
 	case 'searchProduct':
-		# code...
+		$do->search($_POST['q']);
 		break;
 
 	case 'SeeDetail':
-		# code...
+		$do->seeDetail($_POST['id']);
 		break;
 
 	default:

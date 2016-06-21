@@ -80,7 +80,7 @@ class Api extends ConnectDB
 		return $this->runQuery($stmt,$val);
 	}
 
-	protected function update($command,$table,$row=[],$val=[],$req=""){
+	protected function update($command,$table,$row=[],$val=[],$req="",$reqval = array()){
 		switch ($command) {
 			case 'all':
 				if (sizeof($row)==sizeof($val)) {
@@ -109,6 +109,7 @@ class Api extends ConnectDB
 						}
 					}
 					$stmt .= " WHERE $req ;";
+					echo $stmt;
 					return $this->runQuery($stmt,$val);
 				}else{
 					echo $this->errText;
