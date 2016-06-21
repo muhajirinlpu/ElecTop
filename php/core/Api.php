@@ -41,7 +41,7 @@ class Api extends ConnectDB
 	}
 
 	protected function response($code,$data){
-		$arr = array("response"=>$code,'data'=>$data);
+		$arr = array("response"=>$code,'message'=>$data);
 		echo json_encode($arr);
 	}
 

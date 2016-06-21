@@ -22,6 +22,10 @@ switch ($_GET['do']) {
 		# code...
 		break;
 
+	case 'SeeDetail':
+		# code...
+		break;
+
 	default:
 		echo 'check your command again';
 		break;
