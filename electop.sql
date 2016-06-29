@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 21, 2016 at 09:50 
+-- Generation Time: Jun 29, 2016 at 05:24 
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.4
 
@@ -51,35 +51,18 @@ CREATE TABLE `barang_data` (
   `harga` int(255) NOT NULL,
   `stok` int(11) NOT NULL DEFAULT '0',
   `keyword` longtext NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_view` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `total_sell` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `barang_data`
 --
 
-INSERT INTO `barang_data` (`id_barang`, `author`, `merk`, `type`, `spoiler`, `picture`, `harga`, `stok`, `keyword`, `date_added`) VALUES
-(1, 1, 'Sony', 'CamPocket', 'Sony Cam pocket merupakan . blablablablablablablablablablablab', 'default.png', 21000000, 15, 'Sony Cam pocket Sony Cam pocket merupakan . blablablablablablablablablablablab', '2016-06-21 06:10:49');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `barang_detail`
---
-
-CREATE TABLE `barang_detail` (
-  `id_detail` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `last_view` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `total_sell` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `barang_detail`
---
-
-INSERT INTO `barang_detail` (`id_detail`, `id_barang`, `last_view`, `total_sell`) VALUES
-(1, 1, '2016-06-21 07:37:51', 1);
+INSERT INTO `barang_data` (`id_barang`, `author`, `merk`, `type`, `spoiler`, `picture`, `harga`, `stok`, `keyword`, `date_added`, `last_view`, `total_sell`) VALUES
+(1, 1, 'Sony', 'MB211', 'Sony MB211 Adalah produk kamera besutan sony yang telah ', 'default.png', 2100000, 0, 'Sony MB211 Adalah produk kamera besutan sony yang telah ', '2016-06-26 02:42:00', '2016-06-27 04:56:40', 0),
+(2, 1, 'Sony', 'MB211', 'Sony MB211 Adalah produk kamera besutan sony yang telah ', 'default.png', 2100000, 0, 'Sony MB211 Adalah produk kamera besutan sony yang telah ', '2016-06-26 02:42:04', '2016-06-27 06:42:31', 0);
 
 -- --------------------------------------------------------
 
@@ -88,12 +71,21 @@ INSERT INTO `barang_detail` (`id_detail`, `id_barang`, `last_view`, `total_sell`
 --
 
 CREATE TABLE `order_product` (
+  `id_order` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_barang` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `total` int(11) NOT NULL,
+  `description` text,
   `last_activity` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_product`
+--
+
+INSERT INTO `order_product` (`id_order`, `id_user`, `id_barang`, `status`, `total`, `description`, `last_activity`) VALUES
+(1, 1, 1, 1, 1, NULL, '2016-06-27 06:51:58');
 
 -- --------------------------------------------------------
 
@@ -109,6 +101,13 @@ CREATE TABLE `userdata` (
   `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `userdata`
+--
+
+INSERT INTO `userdata` (`id_user`, `username`, `password`, `email`, `last_login`) VALUES
+(1, 'muhajirinlpu', 'lalala', 'muhajirinarnges@gmail.com', '2016-06-27 09:22:32');
+
 -- --------------------------------------------------------
 
 --
@@ -120,8 +119,15 @@ CREATE TABLE `userprofil` (
   `id_user` int(11) NOT NULL,
   `nama` text NOT NULL,
   `alamat` text NOT NULL,
-  `telepon` int(254) NOT NULL
+  `telepon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userprofil`
+--
+
+INSERT INTO `userprofil` (`id_profil`, `id_user`, `nama`, `alamat`, `telepon`) VALUES
+(1, 1, 'Muhajirin Ida Ilyas', 'Jl jojoran 3/48', '085731165022');
 
 --
 -- Indexes for dumped tables
@@ -140,16 +146,12 @@ ALTER TABLE `barang_data`
   ADD PRIMARY KEY (`id_barang`);
 
 --
--- Indexes for table `barang_detail`
---
-ALTER TABLE `barang_detail`
-  ADD PRIMARY KEY (`id_detail`);
-
---
 -- Indexes for table `order_product`
 --
 ALTER TABLE `order_product`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_order`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_barang` (`id_barang`);
 
 --
 -- Indexes for table `userdata`
@@ -176,27 +178,22 @@ ALTER TABLE `admindata`
 -- AUTO_INCREMENT for table `barang_data`
 --
 ALTER TABLE `barang_data`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `barang_detail`
---
-ALTER TABLE `barang_detail`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `userdata`
 --
 ALTER TABLE `userdata`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `userprofil`
 --
 ALTER TABLE `userprofil`
-  MODIFY `id_profil` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_profil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
