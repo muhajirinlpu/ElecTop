@@ -1,6 +1,6 @@
 <?php  
 
-require_once '../php/core/Api.php';
+require_once '../../php/core/Api.php';
 
 /**
 * Homepage class for toko 
@@ -16,28 +16,37 @@ class Hmpg extends Api
 	}
 	
 	public function seeTopProduct(){
-		$stmt = $this->select('where','A.total_sell , B.merk,B.type,B.spoiler,B.picture','barang_detail AS A , barang_data AS B','A.id_barang = B.id_barang ORDER BY total_sell DESC LIMIT 5');
+		$stmt = $this->select('all','total_sell,merk,type,spoiler,picture','barang_data ORDER BY total_sell DESC LIMIT 5');
 		$data = $this->fetchAll($stmt);
 		if ($data) return $this->response(1,$data);
 		else return $this->response(0,"Empty Result");
 	}
 
 	public function seeLastviewProduct(){
-		$stmt = $this->select('where','A.last_view , B.merk,B.type,B.spoiler,B.picture','barang_detail AS A , barang_data AS B','A.id_barang = B.id_barang ORDER BY last_view DESC LIMIT 5');
+		$stmt = $this->select('where','last_view,merk,type,spoiler,picture','barang_data','ORDER BY last_view DESC LIMIT 5');
 		$data = $this->fetchAll($stmt);
 		if ($data) return $this->response(1,$data);
 		else return $this->response(0,"Empty Result");	
 	}
 
+	public function seeAllProduct($p){
+		$stmt = $this->select('where','total_sell,merk,type,spoiler,picture','barang_data','id_barang >= ? ORDER BY total_sell DESC LIMIT 10',array($p));
+		$cmd  = $this->select('all','id_barang','barang_data');
+		$data = $this->fetchAll($stmt);
+		$count = $cmd->rowCount();
+		$count = ceil($count/10);
+		return $this->response($count,$data);
+	}
+
 	public function search($key){
-		$stmt = $this->select('where','merk,type,spoiler,picture','barang_data',"keyword LIKE '%$key%'",array($key));
+		$stmt = $this->select('where','merk,type,spoiler,picture','barang_data',"keyword LIKE '%$key%'",array(':key'=>$key));
 		$data = $this->fetchAll($stmt);
 		if ($data) return $this->response(1,$data);
 		else return $this->response(0,"Empty Result");
 	}
 
 	private function setLooking($id){
-		$stmt = $this->runQuery('UPDATE `barang_detail` SET `last_view`= NOW() WHERE id_barang = 1');
+		$stmt = $this->runQuery('UPDATE `barang_data` SET `last_view`= NOW() WHERE id_barang = ?',array($id));
 		if($stmt) return true;
 	}
 

@@ -1,6 +1,6 @@
 <?php  
 
-require_once '../core/Api.php';
+require_once '../../core/Api.php';
 
 /**
 * User class 
@@ -8,10 +8,20 @@ require_once '../core/Api.php';
 class User extends Api
 {
 	
-	function __construct(argument)
-	{
-		# code...
+	public function register($uname,$pass,$email){
+
 	}
+
+	public function login($uname,$pass){
+
+	}
+
+	public function updateProfile(){
+
+	}
+
+	
+
 }
 
 ?>

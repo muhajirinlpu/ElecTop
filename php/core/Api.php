@@ -14,7 +14,7 @@ class Api extends ConnectDB
 		"server" => "localhost" ,
 		"dbname" => "electop"   ,
 		"user"   => "root"      ,
-		"pass"   => "9514"           
+		"pass"   => ""           
 	);
 
 	public function __construct(){

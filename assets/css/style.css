@@ -1,0 +1,165 @@
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/roboto/Roboto-Regular.ttf);
+}
+
+html , body {
+	font-family: roboto;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+#background{
+	width: 100%;
+	height: 85vh;
+	background: url("../pct/land.jpg") fixed;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: -5;
+}
+
+.content{
+	position: absolute;
+	display: block;
+}
+
+
+/*atas*/
+
+#nav-container{
+	width: 100%;
+	height: 15vh;
+	position:absolute;
+	background-color: #dd371c;
+	box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3);
+	z-index: 100;
+}
+
+#handler{
+	width: 100%;
+	height: 15vh;
+	position:absolute;	
+}
+
+.new-container{
+	transform: translate(40%,300%);
+	position: absolute;
+	width: 30%;
+	height: 10%;
+}
+
+#top{
+	width: 100%;
+	height: 85vh;
+	position:absolute;
+	background:rgba(153, 153, 153, 0.5);
+	top:0;
+}
+
+.flex-caption {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+  margin:0 auto;
+}
+
+.introtext{
+	position: absolute;
+	background:rgba(153, 153, 153, 0.5);
+	padding: 10px;
+	width: 30%;
+	transform: translate3d(190%,75%,0);
+}
+
+/*login form*/
+	#login-form{
+		position: relative;
+		transform: translateY(80%);
+		left: 55%;
+	}
+
+	form input{
+		border: none;
+		background: #424242;
+		width: 20%;
+		height: 32px;
+		border-radius: 5px;
+	}
+
+	[placeholder] {
+		text-align: center;
+		color: white;
+		font-weight: bold;
+	}
+
+	button{
+		color: white;
+		width: 50px;
+		height: 37px;
+		background-color: #e21818;
+		border-radius: 5px;
+	}
+.search-container{
+	position: fixed;
+	top: 0%;
+	width:25%;
+	height: 100%;
+	background-color: #E65100;
+	float:right;
+	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+	right: -25%;
+	z-index: 3;
+}
+
+.search{
+	width: 95%;
+	margin: 10px;
+	margin-top: 23%;
+	background-color: #dd371c;
+}
+
+/*tengah*/
+
+#middle{
+	top: 100%;
+	background-color: #fff;
+	opacity: 1;
+	width: 75%;
+	height: 100%;
+	size: 100% 100%;
+	position: absolute;
+}
+
+	.left{
+		position: absolute;
+		height: 100%;
+		width: 50%;
+	}
+
+	.right{
+		position: absolute;
+		height: 100%;
+		width: 50%;
+		float: right;
+		right: 0;
+	}
+
+/*bawah*/
+
+#bottom{
+	position: absolute;
+	top: 200%;
+	background-color: #fff;
+	opacity: 1;
+	width: 75%;
+	height: 100%;
+	size: 100% 100%;
+	position: absolute;
+}

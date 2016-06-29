@@ -1,6 +1,6 @@
 <?php  
 
-require_once '../php/classes/hmpgClass.php';
+require_once '../../php/classes/hmpgClass.php';
 
 $do = new Hmpg();
 
@@ -18,17 +18,24 @@ switch ($_GET['do']) {
 		$do->seeLastviewProduct();
 		break;
 
+	case 'getAllProduct':
+		if (isset($_GET['p'])) $p = $_GET['p'];
+		else $p = 1;
+		$do->seeAllProduct($p);
+		break;
+
 	case 'searchProduct':
-		$do->search($_POST['q']);
+		$do->search($_GET['q']);
 		break;
 
 	case 'SeeDetail':
-		$do->seeDetail($_POST['id']);
+		$do->seeDetail($_GET['id']);
 		break;
 
 	default:
 		echo 'check your command again';
 		break;
+		
 }
 
 
