@@ -1,9 +1,9 @@
 //This file is for frontend ( display script )
 
-$(function(){
+$(document).ready(function(){
 
 	var navbar = $("#nav-container");
-	var height = $(window).height(); 
+	var height = $(window).height();
 
 	var go = {
 		initNavbar : function(stmt){
@@ -52,12 +52,6 @@ $(function(){
 			go.initNavbar("real");
 			go.showSearch("hide");
 		}
-	});
-
-	$(document).ready(function(){
-		$(".flexslider").flexslider({
-	    	animation: "slide"
-	  	});
 	});
 
 });

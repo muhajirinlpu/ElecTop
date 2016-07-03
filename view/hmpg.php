@@ -53,5 +53,7 @@
 	</div>
 </div>
 <div id="bottom">
+
+<?php phpinfo() ?>
 	
 </div>

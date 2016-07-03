@@ -1,25 +1,25 @@
-<?php  
+<?php
 
 require_once 'ConnectDB.php';
 
 /**
 * Api controller
 */
-class Api extends ConnectDB 
+class Api extends ConnectDB
 {
 	public  $errText = 'Something error with your command or syntax or many more ! . Please check your spelling code again again again and then drink ice tea or ice degan :v' ;
 
 	private $conn;
-	private $config = array(	
+	private $config = array(
 		"server" => "localhost" ,
 		"dbname" => "electop"   ,
 		"user"   => "root"      ,
-		"pass"   => ""           
+		"pass"   => "9514"
 	);
 
 	public function __construct(){
-		$this->conn = $this->connectDB($this->config); 
-	} 
+		$this->conn = $this->connectDB($this->config);
+	}
 
 	protected function runQuery($query,$arr=array()){
 		try {
@@ -45,11 +45,51 @@ class Api extends ConnectDB
 		echo json_encode($arr);
 	}
 
+	protected function generate($str){
+		$str += "asweq123";
+		return md5($str);
+	}
+
+	protected function imageUploads(){
+		$directory = "../uploads/";
+		$target = $directory . basename($_FILES['fileUpload']['name']);
+		$fileType = pathinfo($target,PATHINFO_EXTENSION);
+		$status = 1 ;
+
+		if (isset($_POST['submit'])) {
+			$check = getimagesize($_FILES['fileUpload']['tmp_name']);
+			if ($check == false) {
+				$status = 0 ;
+				$message[] = "File maybe attack !";
+			}
+		}
+
+		if ($_FILES['fileUpload']['size'] > 5000000) {
+			$message[] = "File too large !";
+			$status = 0 ;
+		}
+
+		if ($fileType != "jpg" || $fileType != "png" || $fileType != "jpeg") {
+			$message[] = "Content not supported ! . try another picture";
+			$status = 0 ;
+		}
+
+		if ($status != 0) {
+			if (move_uploaded_file($_FILES['fileUpload']['tmp_name'], $target)) {
+				return $this->response(1,basename($_FILES['fileUpload']['name'])." has been uploaded .");
+			}else{
+				return $this->response(0,"something error with server upload");
+			}
+		}else{
+			return $this->response(0,message[]);
+		}
+	}
+
 	//Begin of CRUD manipulated :)
 	protected function insert ($table, $row = [], $val = []){
       	$a = "" ; $b = "";
       	if (sizeof($row)==sizeof($val)&&isset($table, $row, $val)) {
-			for ($i=0; $i < sizeof($row) ; $i++) { 
+			for ($i=0; $i < sizeof($row) ; $i++) {
 				if ($i != 0) {
 					$a .= " ,$row[$i]";
 					$b .= " ,?";
@@ -85,7 +125,7 @@ class Api extends ConnectDB
 			case 'all':
 				if (sizeof($row)==sizeof($val)) {
 					$stmt = "UPDATE $table SET ";
-					for ($i=0; $i < sizeof($row) ; $i++) { 
+					for ($i=0; $i < sizeof($row) ; $i++) {
 						if ($i != 0) {
 							$stmt .= " ,$row[$i] = ?";
 						}else{
@@ -101,7 +141,7 @@ class Api extends ConnectDB
 			case 'where':
 				if (sizeof($row)==sizeof($val)) {
 					$stmt = "UPDATE $table SET ";
-					for ($i=0; $i < sizeof($row) ; $i++) { 
+					for ($i=0; $i < sizeof($row) ; $i++) {
 						if ($i != 0) {
 							$stmt .= " ,$row[$i] = ?";
 						}else{
@@ -115,7 +155,7 @@ class Api extends ConnectDB
 					echo $this->errText;
 				}
 				break;
-			
+
 			default:
 				echo $this->errText;
 				break;

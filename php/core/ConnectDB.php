@@ -11,7 +11,7 @@ class ConnectDB
 			$conn -> setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 			return $conn;
 		} catch (PDOException $e) {
-			echo 'Connection Error ' . $e->getMessage();
+			echo 'ERROR kamvret ' . $e->getMessage();
 		}
 	}
 	
