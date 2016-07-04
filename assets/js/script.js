@@ -39,6 +39,12 @@ $(document).ready(function(){
 					'transition': '0.5s'
 				});
 			}
+		},
+
+		checkHash : function(){
+			var hash = window.location.hash;
+			var product = parseInt(hash.slice(1, hash.length));
+			console.log("detect "+product);
 		}
 
 	}
@@ -53,5 +59,28 @@ $(document).ready(function(){
 			go.showSearch("hide");
 		}
 	});
+
+	var slide = 1 ;
+	setInterval(function(){
+		if (slide==1) {
+			$('.bxslider').bxSlider({
+				mode: 'fade',
+		  		captions: true,
+		  		adaptiveHeightSpeed : 1000
+			});
+		}
+		slide++;
+	},500);
+
+	$(window).bind("hashchange",function(){
+		go.checkHash();
+	});
+
+	$(".product").on('click',function(){
+		var a = $(this).data("action");
+		console.log("clicked"+a);
+	});
+
+	go.checkHash();
 
 });

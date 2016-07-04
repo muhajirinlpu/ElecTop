@@ -14,7 +14,7 @@ switch ($_GET['do']) {
 		break;
 
 	case 'login':
-		
+		$do->login($_POST['username'],$_POST['password']);
 		break;
 
 	case 'buy':

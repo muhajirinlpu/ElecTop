@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../core/Api.php';
+require_once '../../php/core/Api.php';
 
 /**
 * User class
@@ -25,17 +25,17 @@ class User extends Api
 
 	public function login($uname,$pass){
 		$password = $this->generate($pass);
-		$stmt = $this->select('where','id_user,username,email','userdata','username = :uname password = :pass',array('uname'=>$uname,'pass' => $password);
-		if ($stmt) {
+		$stmt = $this->select('where','id_user,username,email','userdata','username = :uname AND password = :pass',array('uname'=>$uname,'pass' => $password));
+		if ($stmt->rowCount()==1) {
 			$data = $this->fetch($stmt);
 			$_SESSION = array('id_user' => $data['id_user'] , 'username' => $data['username'] , 'email' => $data['email']);
 			if ($this->checkProfile($data['id_user'])) {
 				return $this->response(1,"Logged in");
 			}else{
 				return $this->response(0,"doCompleteProfile");
-			}else{
-				return $this->response(0,"something error or you're wrong username or password ");
 			}
+		}else{
+			return $this->response(0,"Wrong username or password ");
 		}
 	}
 
@@ -47,11 +47,6 @@ class User extends Api
 		}else{
 			return $this->response(0,"All insert must not empty");
 		}
-	}
-
-
-	public function updateProfile(){
-
 	}
 
 }

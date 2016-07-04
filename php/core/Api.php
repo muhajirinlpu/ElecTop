@@ -50,21 +50,21 @@ class Api extends ConnectDB
 		return md5($str);
 	}
 
-	protected function imageUploads(){
+	protected function imageUploads($formName){
 		$directory = "../uploads/";
-		$target = $directory . basename($_FILES['fileUpload']['name']);
+		$target = $directory . basename($_FILES[$formName]['name']);
 		$fileType = pathinfo($target,PATHINFO_EXTENSION);
 		$status = 1 ;
 
 		if (isset($_POST['submit'])) {
-			$check = getimagesize($_FILES['fileUpload']['tmp_name']);
+			$check = getimagesize($_FILES[$formName]['tmp_name']);
 			if ($check == false) {
 				$status = 0 ;
 				$message[] = "File maybe attack !";
 			}
 		}
 
-		if ($_FILES['fileUpload']['size'] > 5000000) {
+		if ($_FILES[$formName]['size'] > 5000000) {
 			$message[] = "File too large !";
 			$status = 0 ;
 		}
@@ -75,13 +75,13 @@ class Api extends ConnectDB
 		}
 
 		if ($status != 0) {
-			if (move_uploaded_file($_FILES['fileUpload']['tmp_name'], $target)) {
-				return $this->response(1,basename($_FILES['fileUpload']['name'])." has been uploaded .");
+			if (move_uploaded_file($_FILES[$formName]['tmp_name'], $target)) {
+				return basename($_FILES[$formName]['name'])." has been uploaded .";
 			}else{
-				return $this->response(0,"something error with server upload");
+				return "something error with server upload";
 			}
 		}else{
-			return $this->response(0,message[]);
+			return $message;
 		}
 	}
 

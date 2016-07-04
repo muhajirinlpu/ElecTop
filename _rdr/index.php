@@ -3,6 +3,7 @@
 <head>
 	<title>ElecTop</title>
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/jquery.bxslider.css">
 </head>
 <body>
 
@@ -36,8 +37,9 @@
 			}
 		?>
 	</script>
-	<script type="text/javascript" src="../assets/js/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../assets/js/core.js"></script>
+	<script type="text/javascript" src="../assets/js/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
 </body>
 </html>

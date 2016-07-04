@@ -2,10 +2,8 @@
 <div id="top">
 	<!-- begin of new product slider start -->
 	<div class="new-container">
-		<div class="flexslider">
-			<ul class="slides">
-			</ul>
-		</div>
+		<ul class="bxslider">
+		</ul>
 	</div>
 	<div class="introtext">
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -18,10 +16,11 @@
 </div>
 <div id="handler"></div>
 <div id="nav-container">
+	<img src="../assets/pct/logo2.png" id="logo">
 	<div id="login-form">
 		<?php if (!$loggedin): ?>
 			<form action="prcs/user.php?do=login" method="POST">
-				<input type="text" name="Username" placeholder="username">
+				<input type="text" name="username" placeholder="username">
 				<input type="password" name="password" placeholder="password">
 				<button type="submit">Login</button>
 			</form>
@@ -37,7 +36,7 @@
 		<input type="text" class="search" name="search" placeholder="Search product">
 	</form>
 	<div class="result-container">
-		<!-- <ul class="search-container"></ul> -->
+		<ul class="search-container"></ul>
 	</div>
 </div>
 <div id="middle">
@@ -53,7 +52,5 @@
 	</div>
 </div>
 <div id="bottom">
-
-<?php phpinfo() ?>
 	
 </div>
