@@ -38,7 +38,6 @@
 		?>
 	</script>
 	<script type="text/javascript" src="../assets/js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../assets/js/core.js"></script>
 	<script type="text/javascript" src="../assets/js/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="../assets/js/script.js"></script>
 </body>

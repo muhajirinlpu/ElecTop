@@ -15,6 +15,16 @@ a{
 	color: white;
 }
 
+a:hover{
+	text-decoration: underline;
+}
+
+h1{
+	opacity: 87%;
+	color: #424242;
+	position: absolute;
+}
+
 #background{
 	width: 100%;
 	height: 85vh;
@@ -27,10 +37,6 @@ a{
 .content{
 	position: absolute;
 	display: block;
-}
-
-.result-container{
-	position: fixed;
 }
 
 /*atas*/
@@ -122,20 +128,27 @@ a{
 }
 
 .search{
+	position: absolute;
 	width: 95%;
 	margin: 10px;
 	margin-top: 23%;
 	background-color: #dd371c;
 }
 
+.search-result{
+	position: absolute;
+	top: 20%;
+}
+
 /*tengah*/
 
 #middle{
-	top: 100%;
+	z-index: -15;
+	top: 125%;
 	background-color: #fff;
 	opacity: 1;
 	width: 75%;
-	height: 100%;
+	height: 130%;
 	size: 100% 100%;
 	position: absolute;
 }
@@ -154,11 +167,56 @@ a{
 		right: 0;
 	}
 
+	.content li{
+		list-style: none;
+
+	}
+
+	.attr-content{
+		position: relative;
+		height: 130px;
+	}
+
+	.attr-content img{
+		position: absolute;
+		width: 150px;
+		height: 100px;
+		border: 5px;
+		border-style: solid;
+		border-radius: 5px;
+		border-color: rgba(255, 102, 0, 0.66);
+	}
+
+	.attr-content h4{
+		-webkit-margin-before:0.5em;
+		-webkit-margin-after:0em;
+		opacity: 87%;
+	}
+
+	.text{
+		position: absolute;
+		left: 43%;
+	}
+
+	.attr-content p{
+		font-size: 14px;
+		opacity: 54%;
+		-webkit-margin-before:0.5em;
+		-webkit-margin-after:0.3em;
+	}
+
+	.attr-content a{
+		font-size: 14px;
+		color: #5c5c5c; 
+	}
+
+
 /*bawah*/
 
 #bottom{
+	z-index: -15;
 	position: absolute;
-	top: 200%;
+	top: 265%;
 	background-color: #fff;
 	opacity: 1;
 	width: 75%;

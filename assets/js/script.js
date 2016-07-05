@@ -1,6 +1,10 @@
-//This file is for frontend ( display script )
-
 $(document).ready(function(){
+
+	$.getScript("../assets/js/core.js",function(){
+		init.newProduct();
+		init.topProduct();
+	});
+
 
 	var navbar = $("#nav-container");
 	var height = $(window).height();
@@ -15,6 +19,7 @@ $(document).ready(function(){
 					'display'	: 'none'*/
 				});
 				/*navbar.fadeIn(500);*/
+				$("#logo").css({"transform":"translateY(0)"});
 				$("#login-form").css({'transform': 'translateY(20%)'});
 			}else{
 				navbar.css({
@@ -23,6 +28,7 @@ $(document).ready(function(){
 					'height'	: '15vh',
 					'display'	: 'block'
 				});
+				$("#logo").css({"transform":"translateY(10%)"});
 				$("#login-form").css({'transform': 'translateY(70%)'});
 			}
 		},
@@ -70,7 +76,7 @@ $(document).ready(function(){
 			});
 		}
 		slide++;
-	},500);
+	},1000);
 
 	$(window).bind("hashchange",function(){
 		go.checkHash();
