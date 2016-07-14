@@ -1,10 +1,16 @@
 $(document).ready(function(){
 
+
 	$.getScript("../assets/js/core.js",function(){
 		init.newProduct();
 		init.topProduct();
+		init.lastViewProduct();
+		init.allProduct(1);
+		$(".page").on("click",function(){
+			var p = $(this).data("action");
+			init.allProduct(p);
+		});
 	});
-
 
 	var navbar = $("#nav-container");
 	var height = $(window).height();
@@ -12,22 +18,11 @@ $(document).ready(function(){
 	var go = {
 		initNavbar : function(stmt){
 			if (stmt == "float") {
-				navbar.css({
-					'position'  : 'fixed',
-					'top'		: '0',
-					'height'	: '8%'/*,
-					'display'	: 'none'*/
-				});
-				/*navbar.fadeIn(500);*/
+				navbar.css({'position':'fixed','top':'0','height':'8%'});
 				$("#logo").css({"transform":"translateY(0)"});
 				$("#login-form").css({'transform': 'translateY(20%)'});
 			}else{
-				navbar.css({
-					'position'  : 'absolute',
-					'top'		: '85%',
-					'height'	: '15vh',
-					'display'	: 'block'
-				});
+				navbar.css({'position':'absolute','top':'85%','height':'15vh','display':'block'});
 				$("#logo").css({"transform":"translateY(10%)"});
 				$("#login-form").css({'transform': 'translateY(70%)'});
 			}
@@ -35,15 +30,9 @@ $(document).ready(function(){
 
 		showSearch : function(stmt){
 			if (stmt == "show") {
-				$(".search-container").css({
-					'right'		: '0',
-					'transition': '0.5s'
-				});
+				$(".search-container").css({'right':'0','transition':'0.5s'});
 			}else{
-				$(".search-container").css({
-					'right'		: '-25%',
-					'transition': '0.5s'
-				});
+				$(".search-container").css({'right':'-25%','transition':'0.5s'});
 			}
 		},
 
@@ -85,6 +74,10 @@ $(document).ready(function(){
 	$(".product").on('click',function(){
 		var a = $(this).data("action");
 		console.log("clicked"+a);
+	});
+
+	$(".page").hover(function(){
+
 	});
 
 	go.checkHash();

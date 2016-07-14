@@ -1,6 +1,6 @@
 <div id="background"></div>
 <div id="top">
-	<h1 style="transform:translate(70%,200%)">NEW PRODUCT</h1>
+	<h1 style="transform:translate(70%,200%)">WHATS NEW HERE</h1>
 	<!-- begin of new product slider start -->
 	<div class="new-container">
 		<ul class="bxslider">
@@ -40,25 +40,23 @@
 </div>
 <div id="middle">
 	<div class="content left">
-		<h1 style="transform:translate(20%,-170%)">TOP PRODUCT</h1>
+		<h1 style="transform:translate(20%,-170%)">POPULAR NOW</h1>
 		<ul class="topProduct">
 		</ul>
 	</div>
 	<div class="content right">
-		<h1 style="transform:translate(17%,-170%)">LAST VIEW OTHER</h1>
-		<ul class="lastviewProduuct">
-			<li class="attr-content">
-				<img src="../uploads/default.png" class="picProduct">
-				<span class="text">
-					<h4>Sony MB140</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ....</p>
-					<a href="#4">See detail >></a>
-				</span>
-			</li>
+		<h1 style="transform:translate(17%,-170%)">WHATS OTHER VIEW</h1>
+		<ul class="lastviewProduct">
 		</ul>
 	</div>
 </div>
 <div id="bottom">
-	
+	<div class="content grid">
+		<h1 style="transform:translate(6%,-170%)">SEE WHATS WE HAVE </h1>
+		<div id="content-card" style="display: table;">
+		</div>
+		<section id="paging">
+			<ul ></ul>	
+		</section>
+	</div>
 </div>

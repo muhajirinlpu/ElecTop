@@ -19,9 +19,7 @@ switch ($_GET['do']) {
 		break;
 
 	case 'getAllProduct':
-		if (isset($_GET['p'])) $p = $_GET['p'];
-		else $p = 1;
-		$do->seeAllProduct($p);
+		$do->seeAllProduct($_GET['page']);
 		break;
 
 	case 'searchProduct':
@@ -30,6 +28,10 @@ switch ($_GET['do']) {
 
 	case 'SeeDetail':
 		$do->seeDetail($_GET['id']);
+		break;
+
+	case 'init':
+		$do->initAddress("date_added","DESC",5);
 		break;
 
 	default:
